@@ -1,0 +1,12 @@
+{
+  "name": "finding-bigfoot",
+  "version": "1.0.0",
+  "description": "Sample code for Finding Bigfoot with Redis + RediSearch",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "load": "node load.js"
+  },
+  "author": "Guy Royse <guy@guyroyse.com>",
+  "license": "GPL-3.0"
+}
