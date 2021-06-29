@@ -5,8 +5,13 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "load": "node load.js"
+    "load": "node load.js",
+    "index": "node create-indices.js"
   },
   "author": "Guy Royse <guy@guyroyse.com>",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "ioredis": "^4.27.6"
+  }
 }
