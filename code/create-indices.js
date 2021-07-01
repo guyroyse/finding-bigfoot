@@ -1,6 +1,6 @@
 import Redis from 'ioredis'
 
-const INDEX = 'sightings:index'
+import config from './config.js'
 
 async function main() {
 
@@ -8,40 +8,73 @@ async function main() {
 
   let indices = await r.call('FT._LIST')
 
-  if (indices.includes(INDEX)) {
-    await r.call('FT.DROPINDEX', INDEX)
-  }
+  if (indices.includes(config.HASH_INDEX)) await r.call('FT.DROPINDEX', config.HASH_INDEX)
+  if (indices.includes(config.JSON_INDEX)) await r.call('FT.DROPINDEX', config.JSON_INDEX)
   
   await r.call(
-    'FT.CREATE', INDEX,
+    'FT.CREATE', config.HASH_INDEX,
     'ON', 'hash',
-    'PREFIX', 1, 'sighting:',
+    'PREFIX', 1, `${config.HASH_KEY_PREFIX}:`,
     'SCHEMA',
-      'title', 'TEXT',
-      'observed', 'TEXT',
+      'title', 'TEXT', 'SORTABLE',
+      'timestamp', 'NUMERIC', 'SORTABLE',
+      'observed', 'TEXT', 'SORTABLE',
       'location_details', 'TEXT',
-      'latitude', 'NUMERIC',
-      'longitude', 'NUMERIC',
+      'latitude', 'NUMERIC', 'SORTABLE',
+      'longitude', 'NUMERIC', 'SORTABLE',
       'location', 'GEO',
-      'county', 'TAG',
-      'state', 'TAG',
-      'classification', 'TAG',
-      'temperature_high', 'NUMERIC',
-      'temperature_mid', 'NUMERIC',
-      'temperature_low', 'NUMERIC',
-      'dew_point', 'NUMERIC',
-      'humidity', 'NUMERIC',
-      'cloud_cover', 'NUMERIC',
-      'moon_phase', 'NUMERIC',
-      'precip_intensity', 'NUMERIC',
-      'precip_probability', 'NUMERIC',
-      'precip_type', 'TAG',
-      'pressure', 'NUMERIC',
-      'weather_summary', 'TEXT',
-      'uv_index', 'NUMERIC',
-      'visibility', 'NUMERIC',
-      'wind_bearing', 'TAG',
-      'wind_speed', 'NUMERIC'
+      'county', 'TAG', 'SORTABLE',
+      'state', 'TAG', 'SORTABLE',
+      'classification', 'TAG', 'SORTABLE',
+      'temperature_high', 'NUMERIC', 'SORTABLE',
+      'temperature_mid', 'NUMERIC', 'SORTABLE',
+      'temperature_low', 'NUMERIC', 'SORTABLE',
+      'dew_point', 'NUMERIC', 'SORTABLE',
+      'humidity', 'NUMERIC', 'SORTABLE',
+      'cloud_cover', 'NUMERIC', 'SORTABLE',
+      'moon_phase', 'NUMERIC', 'SORTABLE',
+      'precip_intensity', 'NUMERIC', 'SORTABLE',
+      'precip_probability', 'NUMERIC', 'SORTABLE',
+      'precip_type', 'TAG', 'SORTABLE',
+      'pressure', 'NUMERIC', 'SORTABLE',
+      'weather_summary', 'TEXT', 'SORTABLE',
+      'uv_index', 'NUMERIC', 'SORTABLE',
+      'visibility', 'NUMERIC', 'SORTABLE',
+      'wind_bearing', 'TAG', 'SORTABLE',
+      'wind_speed', 'NUMERIC', 'SORTABLE'
+  )
+
+  await r.call(
+    'FT.CREATE', config.JSON_INDEX,
+    'ON', 'json',
+    'PREFIX', 1, `${config.JSON_KEY_PREFIX}:`,
+    'SCHEMA',
+      'title', 'TEXT', 'SORTABLE',
+      'timestamp', 'NUMERIC', 'SORTABLE',
+      'observed', 'TEXT', 'SORTABLE',
+      'location_details', 'TEXT',
+      'latitude', 'NUMERIC', 'SORTABLE',
+      'longitude', 'NUMERIC', 'SORTABLE',
+      'location', 'GEO',
+      'county', 'TAG', 'SORTABLE',
+      'state', 'TAG', 'SORTABLE',
+      'classification', 'TAG', 'SORTABLE',
+      'temperature_high', 'NUMERIC', 'SORTABLE',
+      'temperature_mid', 'NUMERIC', 'SORTABLE',
+      'temperature_low', 'NUMERIC', 'SORTABLE',
+      'dew_point', 'NUMERIC', 'SORTABLE',
+      'humidity', 'NUMERIC', 'SORTABLE',
+      'cloud_cover', 'NUMERIC', 'SORTABLE',
+      'moon_phase', 'NUMERIC', 'SORTABLE',
+      'precip_intensity', 'NUMERIC', 'SORTABLE',
+      'precip_probability', 'NUMERIC', 'SORTABLE',
+      'precip_type', 'TAG', 'SORTABLE',
+      'pressure', 'NUMERIC', 'SORTABLE',
+      'weather_summary', 'TEXT', 'SORTABLE',
+      'uv_index', 'NUMERIC', 'SORTABLE',
+      'visibility', 'NUMERIC', 'SORTABLE',
+      'wind_bearing', 'TAG', 'SORTABLE',
+      'wind_speed', 'NUMERIC', 'SORTABLE'
   )
 
   r.quit()
