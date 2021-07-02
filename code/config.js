@@ -1,5 +1,5 @@
 const KEY_PREFIX      = 'bigfoot:sighting'
-const HASH_KEY_PREFIX = `${KEY_PREFIX}:hash`
+const HASH_KEY_PREFIX = `${KEY_PREFIX}`
 const JSON_KEY_PREFIX = `${KEY_PREFIX}:json`
 const HASH_INDEX      = `${HASH_KEY_PREFIX}:index`
 const JSON_INDEX      = `${JSON_KEY_PREFIX}:index`

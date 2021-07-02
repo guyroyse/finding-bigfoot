@@ -5,8 +5,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "load": "node load.js",
-    "index": "node create-indices.js"
+    "load": "node load-sightings.js",
+    "load-json": "node load-sightings-json.js",
+    "index": "node create-indices.js",
+    "index-json": "node create-indices-json.js"
   },
   "author": "Guy Royse <guy@guyroyse.com>",
   "license": "GPL-3.0",
