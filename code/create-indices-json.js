@@ -17,6 +17,7 @@ async function main() {
     'ON', 'json',
     'PREFIX', 1, `${config.JSON_KEY_PREFIX}:`,
     'SCHEMA',
+      '$.id', 'AS', 'id', 'TAG', 'SORTABLE',
       '$.title', 'AS', 'title', 'TEXT', 'SORTABLE',
       '$.timestamp', 'AS', 'timestamp', 'NUMERIC', 'SORTABLE',
       '$.observed', 'AS', 'observed', 'TEXT', 'SORTABLE',

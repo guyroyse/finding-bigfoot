@@ -1,0 +1,5 @@
+FT.SEARCH
+  "bigfoot:sighting:index"
+  "creek @state:{ Ohio | Kentucky } @temperature_high:[75 +inf] @location:[-84.5120 39.1031 50 mi]"
+LIMIT 0 5
+RETURN 2 id title
