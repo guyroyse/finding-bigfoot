@@ -1,0 +1,1 @@
+FT.AGGREGATE bigfoot:sighting:index "@timestamp:[0 +inf]" APPLY "monthofyear(@timestamp) + 1" AS month GROUPBY 1 @month REDUCE COUNT 0 AS count SORTBY 1 @month LIMIT 0 12

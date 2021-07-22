@@ -1,0 +1,1 @@
+FT.AGGREGATE bigfoot:sighting:index "*" FILTER "exists(@timestamp) && @timestamp >= 0" APPLY "dayofweek(@timestamp)" AS weekday GROUPBY 1 @weekday REDUCE COUNT 0 AS count SORTBY 1 @weekday
