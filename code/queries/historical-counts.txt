@@ -9,4 +9,3 @@ FT.AGGREGATE
       REDUCE COUNT 0 AS count
     SORTBY 2 @year @month
     LIMIT 0 10000
-`
