@@ -14,7 +14,7 @@ fs.createReadStream('data/bfro_reports_geocoded.csv')
 
     // the CSV data often has empty string where we want undefined, so call
     // a bunch of functions to give us undefined where we want
-    const id = toInteger(data.number)
+    const id = toInteger(data.number).toString()
     const title = toTitle(data.title)
     const date = data.date
     const timestamp = toTimestamp(data.date)
