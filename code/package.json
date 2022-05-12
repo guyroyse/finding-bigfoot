@@ -5,15 +5,15 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "load": "node load-sightings.js",
+    "load-hash": "node load-sightings-hash.js",
     "load-json": "node load-sightings-json.js",
-    "index": "node create-indices.js",
+    "index-hash": "node create-indices-hash.js",
     "index-json": "node create-indices-json.js"
   },
   "author": "Guy Royse <guy@guyroyse.com>",
   "license": "GPL-3.0",
   "dependencies": {
     "csv-parser": "^3.0.0",
-    "ioredis": "^4.27.6"
+    "redis": "^4.1.0"
   }
 }

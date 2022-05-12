@@ -44,24 +44,23 @@ fs.createReadStream('data/bfro_reports_geocoded.csv')
     const wind_speed = toFloat(data.wind_speed)
 
     // define the Redis key
-    const key = `${config.JSON_KEY_PREFIX}:${id}`
+    const key = `${config.HASH_KEY_PREFIX}:${id}`
 
-    // create the JSON to store
-    const json =
-      Object.fromEntries(
-        Object
-          .entries({
-            id, title, date, timestamp, observed, classification,
-            county, state, latitude, longitude, location, location_details,
-            temperature_high, temperature_mid, temperature_low,
-            dew_point, humidity, cloud_cover, moon_phase,
-            precip_intensity, precip_probability, precip_type,
-            pressure, summary, uv_index, visibility,
-            wind_bearing, wind_speed })
-          .filter(entry => entry[1] !== undefined)) // removes empty values
+    // collate the values to save in a Redis hash
+    const values = Object.fromEntries(
+      Object
+        .entries({
+          id, title, date, timestamp, observed, classification,
+          county, state, latitude, longitude, location, location_details,
+          temperature_high, temperature_mid, temperature_low,
+          dew_point, humidity, cloud_cover, moon_phase,
+          precip_intensity, precip_probability, precip_type,
+          pressure, summary, uv_index, visibility,
+          wind_bearing, wind_speed })
+        .filter(entry => entry[1] !== undefined)) // removes empty values
 
     // write the data to Redis
-    client.json.set(key, '$', json)
+    client.hSet(key, values)
 
   })
   .on('end', () => {
