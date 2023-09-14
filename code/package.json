@@ -11,9 +11,9 @@
     "index-json": "node create-indices-json.js"
   },
   "author": "Guy Royse <guy@guyroyse.com>",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "dependencies": {
     "csv-parser": "^3.0.0",
-    "redis": "^4.1.0"
+    "redis": "^4.6.8"
   }
 }
