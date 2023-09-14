@@ -1,5 +1,6 @@
-export const KEY_PREFIX      = 'bigfoot:sighting'
-export const HASH_KEY_PREFIX = `${KEY_PREFIX}:hash`
-export const JSON_KEY_PREFIX = `${KEY_PREFIX}:json`
-export const HASH_INDEX      = `${HASH_KEY_PREFIX}:index`
-export const JSON_INDEX      = `${JSON_KEY_PREFIX}:index`
+export const host = process.env.REDIS_HOST
+export const port = Number(process.env.REDIS_PORT)
+export const password = process.env.REDIS_PASSWORD
+
+export const keyPrefix = 'bigfoot:sighting'
+export const indexName = `${keyPrefix}:index`
