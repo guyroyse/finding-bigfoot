@@ -125,7 +125,7 @@ fs.createReadStream('data/bfro_reports_geocoded.csv')
 
         '$.weather.temperature[*]': { AS: 'temperatures', type: SchemaFieldTypes.NUMERIC },
         '$.weather.temperature[0]': { AS: 'lowTemperature', type: SchemaFieldTypes.NUMERIC },
-        '$.weather.temperature[(@.length-1)]': { AS: 'highTemperature', type: SchemaFieldTypes.NUMERIC },
+        '$.weather.temperature[-1:]': { AS: 'highTemperature', type: SchemaFieldTypes.NUMERIC },
 
         '$.weather.precipitation.intensity': { AS: 'precipitationIntensity', type: SchemaFieldTypes.NUMERIC },
         '$.weather.precipitation.probability': { AS: 'precipitationProbability', type: SchemaFieldTypes.NUMERIC },
